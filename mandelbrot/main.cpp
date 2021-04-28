@@ -9,7 +9,7 @@
 #define WIDTH 600
 #define HEIGHT 600
 
-#define MAXITERATIONS 128
+#define MAXITERATIONS 256
 
 #define MAXZOOM 0.1f
 #define MINZOOM 1.0f
@@ -143,11 +143,11 @@ GLuint LoadShader(const char* vertex_path, const char* fragment_path) {
 color GetColor(int iteration) {
 
 	if (iteration < 0) return color(0.0f);
-	if (iteration == 0) return color(1.0f, 0.0f, 0.0f);
-	if (iteration < 16) return color(16.0f, 0.0f, 16.0f * iteration - 1.0f) / 255.0f;
-	if (iteration < 32) return color(0.0f, 16.0f * (iteration - 16.0f), 16.0f * (32.0f - iteration) - 1.0f) / 255.0f;
-	if (iteration < 64) return color(8.0f * (iteration - 32.0f), 8.0f * (64.0f - iteration) - 1.0f, 0.0f) / 255.0f;
-	return color(255.0f - (iteration - 64.0f) * 4.0f, 0.0f, 0.0f) / 255.0f;
+	else if (iteration == 0) return color(1.0f, 0.0f, 0.0f);
+	else if (iteration < 16) return color(16.0f, 0.0f, 16.0f * iteration - 1.0f) / 255.0f;
+	else if (iteration < 32) return color(0.0f, 16.0f * (iteration - 16.0f), 16.0f * (32.0f - iteration) - 1.0f) / 255.0f;
+	else if (iteration < 64) return color(8.0f * (iteration - 32.0f), 8.0f * (64.0f - iteration) - 1.0f, 0.0f) / 255.0f;
+	else return color(255.0f - (iteration - 64.0f) * 4.0f, 0.0f, 0.0f) / 255.0f;
 }
 
 /* Compute the mandelbrot set. 
